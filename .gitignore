@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Xcode
+xcuserdata/
+DerivedData/
+build/
+
+# Environment files
+.env
+.env.*
+
+# Apple signing credentials
+*.p8
+*.p12
+*.mobileprovision

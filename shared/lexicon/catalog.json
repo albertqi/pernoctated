@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 3,
+  "defaultLexiconID": "NWL2023",
+  "lookupQuery": "lookup.sql",
+  "inputRules": {
+    "maximumLines": 8,
+    "minimumLength": 2,
+    "maximumLength": 15,
+    "trimCodePoints": [9, 10, 11, 12, 13, 32, 133, 160, 5760, 8192, 8193, 8194, 8195, 8196, 8197, 8198, 8199, 8200, 8201, 8202, 8232, 8233, 8239, 8287, 12288],
+    "allowedInput": "ASCII letters A-Z and a-z only",
+    "normalization": "ASCII uppercase after trimming and validation",
+    "playInput": "At most eight lines, including a trailing empty line; Unicode newlines and CRLF count as one line break each",
+    "editorNewlines": "Reject newline insertion if it leaves an affected nonfinal line empty or whitespace-only; reject over-limit edits and pastes without truncating; allow ordinary deletion",
+    "playValidity": "At least one nonempty line and all entries valid; malformed entries are invalid",
+    "resultOrder": "Preserve input order and duplicates",
+    "basePoints": "Use words.point_value; excludes blanks, board multipliers, and bingo bonuses"
+  },
+  "lexicons": [
+    {
+      "id": "NWL2023",
+      "name": "NWL2023",
+      "description": "North American tournament words",
+      "databaseFile": "nwl2023.db",
+      "wordCount": 196601,
+      "sha256": "051e114804b462aeb23f9862bababc0f4854b7499a55047862aa7dcd30b3a821"
+    },
+    {
+      "id": "CSW24",
+      "name": "CSW24",
+      "description": "International tournament words",
+      "databaseFile": "csw24.db",
+      "wordCount": 280887,
+      "sha256": "a04130e1c7d0afb359e06ddbb0cd831649ea43b7855b44c9ca7e592a25ae70cc"
+    }
+  ]
+}
