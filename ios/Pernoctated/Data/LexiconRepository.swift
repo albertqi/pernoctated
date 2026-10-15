@@ -29,6 +29,16 @@ actor LexiconRepository {
         }
     }
 
+    func hookQuestions(lexicon: Lexicon, pattern: AnagramPattern) throws -> [HookQuestion] {
+        try connection(for: lexicon).hookWords(pattern: pattern).shuffled().map {
+            HookQuestion(word: $0, side: Bool.random() ? .front : .back)
+        }
+    }
+
+    func hookAnswers(lexicon: Lexicon, question: HookQuestion) throws -> [HookAnswer] {
+        try connection(for: lexicon).hookAnswers(question: question)
+    }
+
     func lookupPlay(entries: [SubmittedWord], lexicon: Lexicon, queryFile: String) throws -> PlayResult {
         guard !entries.isEmpty else { throw InputError.empty }
         let connection = try connection(for: lexicon, queryFile: queryFile)
@@ -176,6 +186,52 @@ private final class ReadOnlyLexicon {
                 let rack = String(cString: bytes)
                 if pattern.matches(rack) { racks.append(rack) }
             case SQLITE_DONE: return racks
+            default: throw LexiconError.lookupFailed
+            }
+        }
+    }
+
+    func hookWords(pattern: AnagramPattern) throws -> [String] {
+        let query = try prepareQuery("hooks-words", columns: 2)
+        defer { sqlite3_finalize(query) }
+        guard sqlite3_bind_int(query, 1, Int32(pattern.minimumLength)) == SQLITE_OK,
+              sqlite3_bind_int(query, 2, Int32(pattern.maximumLength)) == SQLITE_OK else {
+            throw LexiconError.lookupFailed
+        }
+        var words: [String] = []
+        while true {
+            try Task.checkCancellation()
+            switch sqlite3_step(query) {
+            case SQLITE_ROW:
+                guard let word = sqlite3_column_text(query, 0), let alphagram = sqlite3_column_text(query, 1) else {
+                    throw LexiconError.lookupFailed
+                }
+                if pattern.matches(String(cString: alphagram)) { words.append(String(cString: word)) }
+            case SQLITE_DONE: return words
+            default: throw LexiconError.lookupFailed
+            }
+        }
+    }
+
+    func hookAnswers(question: HookQuestion) throws -> [HookAnswer] {
+        let query = try prepareQuery("hooks-answers", columns: 3)
+        defer { sqlite3_finalize(query) }
+        let transient = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+        guard sqlite3_bind_text(query, 1, question.word, -1, transient) == SQLITE_OK,
+              sqlite3_bind_int(query, 2, question.side == .front ? 1 : 0) == SQLITE_OK else {
+            throw LexiconError.lookupFailed
+        }
+        var answers: [HookAnswer] = []
+        while true {
+            try Task.checkCancellation()
+            switch sqlite3_step(query) {
+            case SQLITE_ROW:
+                guard let letter = sqlite3_column_text(query, 0), let word = sqlite3_column_text(query, 1) else {
+                    throw LexiconError.lookupFailed
+                }
+                answers.append(HookAnswer(letter: String(cString: letter), word: String(cString: word),
+                                          definition: sqlite3_column_text(query, 2).map { String(cString: $0) }))
+            case SQLITE_DONE: return answers
             default: throw LexiconError.lookupFailed
             }
         }

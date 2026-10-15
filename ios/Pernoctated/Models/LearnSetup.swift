@@ -25,6 +25,7 @@ struct LearnPresets: Decodable {
 enum LearnQuizMode: String, CaseIterable, Identifiable {
     case yesNo = "Yes/No"
     case anagram = "Anagram"
+    case hooks = "Hooks"
     var id: Self { self }
 }
 

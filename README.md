@@ -2,11 +2,13 @@
 
 Offline native iOS play validation for NWL2023 and CSW24. Enter up to eight lines, one word per line, then tap **Check play**. Newlines require a character on the preceding line; empty or whitespace-only lines cannot start another line. The same restrictions apply to paste, without truncating input. A play is valid only if every nonempty line is valid. Valid plays show all words, definitions, and base points; invalid plays show only invalid entries. Order and duplicates are preserved, and **Clear** empties the scrollable editor.
 
-The bottom tabs are **Judge** and **Learn**, in that order. Judge contains the play checker. Learn lets you choose a lexicon, preset, custom pattern, and quiz mode. Presets autofill and disable the pattern field; None enables custom entry and restores any previous custom pattern. Both Anagram and Yes/No can start.
+The bottom tabs are **Judge** and **Learn**, in that order. Judge contains the play checker. Learn lets you choose a lexicon, preset, custom pattern, and quiz mode. Presets autofill and disable the pattern field; None enables custom entry and restores any previous custom pattern. Anagram, Yes/No, and Hooks can start.
 
 Anagram shuffles matching alphagrams into a deck with no repetition. Tap rack tiles to form a word; the last tile automatically submits. Correct words stay visible with definitions. Shuffle reorders remaining tiles, automatic submission preserves that rack order, and Reset returns every tile to alphabetical order. Next opens a two-column review (correct left, missed right); Next again opens the next round. The final review leads to a completion summary.
 
 Yes/No shuffles every matching valid word and every matching generated invalid word together, without repeats or balancing the two categories. Swipe the card left for Invalid or right for Valid; accessible buttons offer the same choices. Answering advances to the next word. The banner shows the previous answer in green if correct or red if incorrect, and includes the definition whenever that answered word is valid. Feedback stays until the next answer. The counter tracks the current word; the final answer shows completion and the score.
+
+Hooks shuffles all matching official words without repeats, assigning each a random front/back challenge. Toggle letters on a fixed A-Z grid, then Check; select nothing to answer that there are no hooks. Correctness and answer counts stay hidden until Check. Review shows correct selections in green, incorrect selections in red, missed hooks outlined and labeled, and all resulting valid words with definitions. Next advances, and the final review leads to a score counting fully correct rounds. Hooks uses the same patterns, lexicons, and MVVM/repository architecture as the other modes; its queries and Android behavior contract live in `shared/lexicon/`.
 
 Open `ios/Pernoctated.xcodeproj` in Xcode, select Pernoctated and an iPhone simulator, and Run. Requires iOS 17 or newer. For a physical device, select your signing team in Xcode.
 
@@ -38,6 +40,10 @@ xcodebuild -project ios/Pernoctated.xcodeproj -scheme Pernoctated \
 ```
 
 No test files or test target are added.
+
+## Hooks verification
+
+Debug and Release simulator builds pass. Interactive iPhone 17 Pro Max (iOS 26.3) checks cover mode selection, front/back prompts, letter selection/deselection, hidden answers before Check, correct/wrong/missed feedback, definition entries, advancement from 1/107 to 2/107 with cleared selection, tab state retention, 15-letter layout, no-hook empty submission, and final scoring. A temporary executable outside the repository runs the actual Swift models/repository/view model on Simulator. For both lexicons it compares every two-letter word's front and back hooks with independent exact word membership, verifies definitions, wildcard/multiplicity filtering, full-deck scoring and transitions, frozen review, completion, no-match and 15-letter/no-hook cases, and Anagram/Yes-No query regression. All four source database hashes remain unchanged.
 
 ## Yes/No verification
 

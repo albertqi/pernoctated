@@ -55,10 +55,12 @@ struct LearnSetupView: View {
                     .pickerStyle(.segmented)
                     .accessibilityIdentifier("learn-mode")
                 } header: {
-                    Text("Yes/No vs Anagram")
+                    Text("Quiz mode")
                 } footer: {
                     if model.mode == .yesNo {
                         Text("Swipe left for Invalid or right for Valid. Feedback about your previous answer stays visible as you continue.")
+                    } else if model.mode == .hooks {
+                        Text("Find all one-letter front or back hooks. Select letters, then tap Check. Leave all letters unselected if there are no hooks.")
                     }
                 }
 
@@ -95,6 +97,7 @@ struct LearnSetupView: View {
                 switch setup.mode {
                 case .anagram: AnagramQuizView(setup: setup)
                 case .yesNo: YesNoQuizView(setup: setup)
+                case .hooks: HooksQuizView(setup: setup)
                 }
             }
         }
