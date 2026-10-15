@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A00000000000000000000008 /* nwl2023-invalid.db in Resources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000018 /* nwl2023-invalid.db */; };
+		A00000000000000000000009 /* csw24-invalid.db in Resources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000019 /* csw24-invalid.db */; };
+		A0000000000000000000000A /* yes-no-words.sql in Resources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001A /* yes-no-words.sql */; };
+		A00000000000000000000006 /* anagram-racks.sql in Resources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000016 /* anagram-racks.sql */; };
+		A00000000000000000000007 /* anagram-answers.sql in Resources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000017 /* anagram-answers.sql */; };
+		A00000000000000000000005 /* learn-presets.json in Resources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000015 /* learn-presets.json */; };
 		A00000000000000000000001 /* nwl2023.db in Resources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000011 /* nwl2023.db */; };
 		A00000000000000000000002 /* csw24.db in Resources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000012 /* csw24.db */; };
 		A00000000000000000000003 /* catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000013 /* catalog.json */; };
@@ -14,6 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A00000000000000000000018 /* nwl2023-invalid.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = nwl2023-invalid.db; path = ../lexicons/nwl2023-invalid.db; sourceTree = SOURCE_ROOT; };
+		A00000000000000000000019 /* csw24-invalid.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = csw24-invalid.db; path = ../lexicons/csw24-invalid.db; sourceTree = SOURCE_ROOT; };
+		A0000000000000000000001A /* yes-no-words.sql */ = {isa = PBXFileReference; lastKnownFileType = text; name = yes-no-words.sql; path = ../shared/lexicon/yes-no-words.sql; sourceTree = SOURCE_ROOT; };
+		A00000000000000000000016 /* anagram-racks.sql */ = {isa = PBXFileReference; lastKnownFileType = text; name = anagram-racks.sql; path = ../shared/lexicon/anagram-racks.sql; sourceTree = SOURCE_ROOT; };
+		A00000000000000000000017 /* anagram-answers.sql */ = {isa = PBXFileReference; lastKnownFileType = text; name = anagram-answers.sql; path = ../shared/lexicon/anagram-answers.sql; sourceTree = SOURCE_ROOT; };
+		A00000000000000000000015 /* learn-presets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = learn-presets.json; path = ../shared/lexicon/learn-presets.json; sourceTree = SOURCE_ROOT; };
 		149959603070479600EF92D2 /* Pernoctated.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pernoctated.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00000000000000000000011 /* nwl2023.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = nwl2023.db; path = ../lexicons/nwl2023.db; sourceTree = SOURCE_ROOT; };
 		A00000000000000000000012 /* csw24.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = csw24.db; path = ../lexicons/csw24.db; sourceTree = SOURCE_ROOT; };
@@ -64,6 +76,12 @@
 				A00000000000000000000012 /* csw24.db */,
 				A00000000000000000000013 /* catalog.json */,
 				A00000000000000000000014 /* lookup.sql */,
+				A00000000000000000000015 /* learn-presets.json */,
+				A00000000000000000000016 /* anagram-racks.sql */,
+				A00000000000000000000017 /* anagram-answers.sql */,
+				A00000000000000000000018 /* nwl2023-invalid.db */,
+				A00000000000000000000019 /* csw24-invalid.db */,
+				A0000000000000000000001A /* yes-no-words.sql */,
 			);
 			name = "Shared Lexicon Resources";
 			sourceTree = "<group>";
@@ -136,6 +154,12 @@
 				A00000000000000000000002 /* csw24.db in Resources */,
 				A00000000000000000000003 /* catalog.json in Resources */,
 				A00000000000000000000004 /* lookup.sql in Resources */,
+				A00000000000000000000005 /* learn-presets.json in Resources */,
+				A00000000000000000000006 /* anagram-racks.sql in Resources */,
+				A00000000000000000000007 /* anagram-answers.sql in Resources */,
+				A00000000000000000000008 /* nwl2023-invalid.db in Resources */,
+				A00000000000000000000009 /* csw24-invalid.db in Resources */,
+				A0000000000000000000000A /* yes-no-words.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

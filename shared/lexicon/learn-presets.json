@@ -1,0 +1,13 @@
+{
+  "presets": [
+    {"id": "none", "name": "None", "pattern": null},
+    {"id": "two-letters", "name": "2 letter words", "pattern": "??"},
+    {"id": "three-letters", "name": "3 letter words", "pattern": "???"},
+    {"id": "four-letters", "name": "4 letter words", "pattern": "????"},
+    {"id": "seven-letters", "name": "7 letter words", "pattern": "???????"},
+    {"id": "j-words", "name": "J words", "pattern": "J*"},
+    {"id": "q-words", "name": "Q words", "pattern": "Q*"},
+    {"id": "x-words", "name": "X words", "pattern": "X*"},
+    {"id": "z-words", "name": "Z words", "pattern": "Z*"}
+  ]
+}

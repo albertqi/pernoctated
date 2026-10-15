@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "defaultLexiconID": "NWL2023",
   "lookupQuery": "lookup.sql",
   "inputRules": {
@@ -21,6 +21,7 @@
       "name": "NWL2023",
       "description": "North American tournament words",
       "databaseFile": "nwl2023.db",
+      "invalidDatabaseFile": "nwl2023-invalid.db",
       "wordCount": 196601,
       "sha256": "051e114804b462aeb23f9862bababc0f4854b7499a55047862aa7dcd30b3a821"
     },
@@ -29,6 +30,7 @@
       "name": "CSW24",
       "description": "International tournament words",
       "databaseFile": "csw24.db",
+      "invalidDatabaseFile": "csw24-invalid.db",
       "wordCount": 280887,
       "sha256": "a04130e1c7d0afb359e06ddbb0cd831649ea43b7855b44c9ca7e592a25ae70cc"
     }

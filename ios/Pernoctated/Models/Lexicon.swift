@@ -5,6 +5,7 @@ struct Lexicon: Decodable, Identifiable, Hashable, Sendable {
     let name: String
     let description: String
     let databaseFile: String
+    let invalidDatabaseFile: String
     let wordCount: Int
     let sha256: String
 }
@@ -21,7 +22,7 @@ struct LexiconCatalog: Decodable, Sendable {
             throw LexiconError.missingResources
         }
         let catalog = try JSONDecoder().decode(Self.self, from: Data(contentsOf: url))
-        guard catalog.schemaVersion == 3,
+        guard catalog.schemaVersion == 4,
               !catalog.lexicons.isEmpty,
               catalog.lexicons.contains(where: { $0.id == catalog.defaultLexiconID }),
               catalog.inputRules.minimumLength > 0,
@@ -119,8 +120,8 @@ enum InputError: LocalizedError {
         case .emptyLine: "Enter a character on each line before starting another."
         case let .maximumLines(maximum): "A play can have at most \(maximum) lines."
         case .invalidEdit: "That edit could not be applied. Please try again."
-        case .lettersOnly: "Use letters A–Z only, with one word per line."
-        case let .length(minimum, maximum): "Words must contain \(minimum)–\(maximum) letters."
+        case .lettersOnly: "Use letters A-Z only, with one word per line."
+        case let .length(minimum, maximum): "Words must contain \(minimum)-\(maximum) letters."
         }
     }
 }

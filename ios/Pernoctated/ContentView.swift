@@ -1,6 +1,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    var body: some View {
+        TabView {
+            JudgeView()
+                .tabItem { Label("Judge", systemImage: "checkmark.seal") }
+            LearnSetupView()
+                .tabItem { Label("Learn", systemImage: "book") }
+        }
+        .tint(AppStyle.accent)
+    }
+}
+
+struct JudgeView: View {
     @State private var model = PlayCheckViewModel()
     @State private var isWordsFocused = false
 
